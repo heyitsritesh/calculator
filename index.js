@@ -44,57 +44,57 @@ let firstNum, secondNum, operator;
 // Event Listeners
 
 function displayCondition() {
-    if (display.textContent == 0 && display.textContent != '0.')
+    if (display.textContent == '0' && display.textContent != '0.')
         display.textContent = '';
 }
 
 one.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 1;
+    display.textContent += '1';
 });
 
 two.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 2;
+    display.textContent += '2';
 });
 
 three.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 3;
+    display.textContent += '3';
 });
 
 four.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 4;
+    display.textContent += '4';
 });
 
 five.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 5;
+    display.textContent += '5';
 });
 
 six.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 6;
+    display.textContent += '6';
 });
 
 seven.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 7;
+    display.textContent += '7';
 });
 
 eight.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 8;
+    display.textContent += '8';
 });
 
 nine.addEventListener('click', () => {
     displayCondition();
-    display.textContent += 9;
+    display.textContent += '9';
 });
 
 zero.addEventListener('click', () => {
-    if (display.textContent != 0) display.textContent += 0;
+    if (display.textContent != '0') display.textContent += '0';
 });
 
 dot.addEventListener('click', () => {
