@@ -10,12 +10,12 @@ const seven = document.querySelector('#seven');
 const eight = document.querySelector('#eight');
 const nine = document.querySelector('#nine');
 const zero = document.querySelector('#zero');
+const dot = document.querySelector('#dot');
 const plus = document.querySelector('#plus');
 const minus = document.querySelector('#minus');
 const multiply = document.querySelector('#multiply');
 const divide = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
-const dot = document.querySelector('#dot');
 const clear = document.querySelector('#clear');
 const display = document.querySelector('#display');
 
@@ -41,11 +41,20 @@ function division(x, y) {
 
 let firstNum, secondNum, operator;
 
-// Event Listeners
+// Display Status
+
+let clearDisplay = false;
+
+// Number Event Listeners
 
 function displayCondition() {
-    if (display.textContent == '0' && display.textContent != '0.')
+    if (
+        clearDisplay ||
+        (display.textContent == '0' && display.textContent != '0.')
+    ) {
         display.textContent = '';
+        clearDisplay = false;
+    }
 }
 
 one.addEventListener('click', () => {
@@ -99,4 +108,68 @@ zero.addEventListener('click', () => {
 
 dot.addEventListener('click', () => {
     if (!display.textContent.includes('.')) display.textContent += '.';
+});
+
+// Operator Event Listeners
+
+function operatorEventListener(op, sign) {
+    op.addEventListener('click', () => {
+        if (firstNum == undefined) {
+            firstNum = Number(display.textContent);
+            clearDisplay = true;
+        } else {
+            execute();
+            clearDisplay = true;
+        }
+
+        operator = sign;
+    });
+}
+
+operatorEventListener(plus, '+');
+operatorEventListener(minus, '-');
+operatorEventListener(multiply, '*');
+operatorEventListener(divide, '/');
+
+// Equals Button Event Listener
+
+equals.addEventListener('click', () => {
+    execute();
+    clearDisplay = true;
+    operator = null;
+});
+
+// Function to run the execution
+
+function execute() {
+    secondNum = Number(display.textContent);
+
+    switch (operator) {
+        case '+':
+            display.textContent =
+                Math.round(addition(firstNum, secondNum) * 1000) / 1000;
+            break;
+        case '-':
+            display.textContent =
+                Math.round(subtraction(firstNum, secondNum) * 1000) / 1000;
+            break;
+        case '*':
+            display.textContent =
+                Math.round(multiplication(firstNum, secondNum) * 1000) / 1000;
+            break;
+        case '/':
+            display.textContent =
+                Math.round(division(firstNum, secondNum) * 1000) / 1000;
+            break;
+    }
+
+    firstNum = Number(display.textContent);
+}
+
+// Clear Button Event Listener
+clear.addEventListener('click', () => {
+    firstNum = undefined;
+    secondNum = undefined;
+    operator = undefined;
+    display.textContent = 0;
 });
