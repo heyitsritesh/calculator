@@ -103,6 +103,7 @@ nine.addEventListener('click', () => {
 });
 
 zero.addEventListener('click', () => {
+    displayCondition();
     if (display.textContent != '0') display.textContent += '0';
 });
 
