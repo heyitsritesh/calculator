@@ -45,8 +45,6 @@ let firstNum, secondNum, operator;
 
 let clearDisplay = false;
 
-// Number Event Listeners
-
 function displayCondition() {
     if (
         clearDisplay ||
@@ -57,50 +55,24 @@ function displayCondition() {
     }
 }
 
-one.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '1';
-});
+// Number Click Event Listeners
 
-two.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '2';
-});
+function numEventClick(num, digit) {
+    num.addEventListener('click', () => {
+        displayCondition();
+        display.textContent += digit;
+    });
+}
 
-three.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '3';
-});
-
-four.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '4';
-});
-
-five.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '5';
-});
-
-six.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '6';
-});
-
-seven.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '7';
-});
-
-eight.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '8';
-});
-
-nine.addEventListener('click', () => {
-    displayCondition();
-    display.textContent += '9';
-});
+numEventClick(one, '1');
+numEventClick(two, '2');
+numEventClick(three, '3');
+numEventClick(four, '4');
+numEventClick(five, '5');
+numEventClick(six, '6');
+numEventClick(seven, '7');
+numEventClick(eight, '8');
+numEventClick(nine, '9');
 
 zero.addEventListener('click', () => {
     displayCondition();
@@ -109,6 +81,40 @@ zero.addEventListener('click', () => {
 
 dot.addEventListener('click', () => {
     if (!display.textContent.includes('.')) display.textContent += '.';
+});
+
+// Number Key Press Event Listeners
+
+function numEventKeyPress(digit) {
+    document.addEventListener('keydown', event => {
+        if (event.key === digit) {
+            displayCondition();
+            display.textContent += digit;
+        }
+    });
+}
+
+numEventKeyPress('1');
+numEventKeyPress('2');
+numEventKeyPress('3');
+numEventKeyPress('4');
+numEventKeyPress('5');
+numEventKeyPress('6');
+numEventKeyPress('7');
+numEventKeyPress('8');
+numEventKeyPress('9');
+
+document.addEventListener('keydown', event => {
+    if (event.key === '0') {
+        displayCondition();
+        if (display.textContent != '0') display.textContent += '0';
+    }
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === '.') {
+        if (!display.textContent.includes('.')) display.textContent += '.';
+    }
 });
 
 // Operator Event Listeners
