@@ -159,6 +159,7 @@ function execute() {
                 Math.round(multiplication(firstNum, secondNum) * 1000) / 1000;
             break;
         case '/':
+            if (secondNum == 0) return (display.textContent = 'Yo wut?');
             display.textContent =
                 Math.round(division(firstNum, secondNum) * 1000) / 1000;
             break;
